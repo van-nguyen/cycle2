@@ -1,7 +1,7 @@
 /*!
-* jQuery Cycle2; version: 2.1.6 build: 20141007
+* jQuery Cycle2; version: 2.1.6 build: 20150116
 * http://jquery.malsup.com/cycle2/
-* Copyright (c) 2014 M. Alsup; Dual licensed: MIT/GPL
+* Copyright (c) 2015 M. Alsup; Dual licensed: MIT/GPL
 */
 
 /* Cycle2 core engine */
@@ -308,6 +308,9 @@ $.fn.cycle.API = {
         var opts = this.opts();
         var after, curr, next, slideOpts, tx;
 
+        // included to fix issue #240 - slideCount undefined error when using js MVC frameworks (e.g. angular or backbone)
+        if (! opts) return;
+        
         if ( opts.slideCount < 2 ) {
             opts.timeoutId = 0;
             return;
